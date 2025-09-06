@@ -13,7 +13,7 @@ const HomePage = () => {
   useEffect (() => {
     const fetchTasks = async () => {
       try {
-        const res = await api.get("http://localhost:5001/api/tasks")
+        const res = await api.get("/tasks")
         console.log(res.data)
         setTasks(res.data)
       } catch (error) {
