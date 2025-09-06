@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import cors from "cors"
 import path from "path"
 
-import tasksRoutes from './src/routes/tasksRoutes.js';
-import { connectDB } from './src/config/db.js';
+import tasksRoutes from './routes/tasksRoutes.js';
+import { connectDB } from './config/db.js';
 
 dotenv.config();
 
@@ -26,13 +26,13 @@ app.use("/api/tasks", tasksRoutes);
 if(process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname,"../frontend/dist")))
 
-    app.get("*", (req,res) => {
+    app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname,"../frontend/dist","index.html"))
 })
 }
 
 connectDB().then(() => {
-    app.listen(5001, () => {
+    app.listen(PORT, () => {
         console.log('Server is running on http://localhost:5001');
 });
 })
